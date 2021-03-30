@@ -3,7 +3,7 @@ package Model;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
-public class User {
+public class Users {
     private int userId;
     private String userName;
     private String password;
@@ -13,7 +13,7 @@ public class User {
     private Timestamp lastUpdate;
     private String lastUpdateBy;
 
-    public User() {
+    public Users() {
 
     }
 

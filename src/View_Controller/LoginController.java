@@ -1,6 +1,6 @@
 package View_Controller;
 
-import Model.User;
+import Model.Users;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,8 +37,8 @@ public class LoginController implements Initializable {
     public void SigninAct(ActionEvent actionEvent) throws IOException, Exception {
         String userId = userIDTxt.getText();
         String password = passwordTxt.getText();
-        LoggedUser.setUserName(userId);
-        LoggedUser.setPassword(password);
+        loggedUsers.setUserName(userId);
+        loggedUsers.setPassword(password);
 
         FileHandler userLogFH = new FileHandler("userlog.txt", true);
         SimpleFormatter sf = new SimpleFormatter();
@@ -64,7 +64,7 @@ public class LoginController implements Initializable {
             alert.close();
         }
     }
-    public static User LoggedUser = new User();
+    public static Users loggedUsers = new Users();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialized");
