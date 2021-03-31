@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.AddCustomerController">
+    <children>
+        <Button layoutX="122.0" layoutY="344.0" mnemonicParsing="false" text="Save" />
+        <Button layoutX="370.0" layoutY="337.0" mnemonicParsing="false" text="Exit" />
+        <Label layoutX="62.0" layoutY="65.0" text="Customer Name: " />
+        <Label layoutX="108.0" layoutY="107.0" text="Address:" />
+        <Label layoutX="131.0" layoutY="174.0" text="City: " />
+        <Label layoutX="103.0" layoutY="215.0" text="Zip Code: " />
+        <Label layoutX="70.0" layoutY="140.0" text="Address Line 2: " />
+        <Label layoutX="348.0" layoutY="182.0" text="Country:" />
+        <Label layoutX="67.0" layoutY="258.0" text="Phone Number: " />
+        <TextField layoutX="184.0" layoutY="60.0" />
+        <TextField layoutX="177.0" layoutY="102.0" />
+        <TextField layoutX="177.0" layoutY="135.0" />
+        <TextField layoutX="170.0" layoutY="169.0" />
+        <TextField layoutX="177.0" layoutY="210.0" />
+        <TextField layoutX="177.0" layoutY="253.0" />
+        <ComboBox layoutX="414.0" layoutY="177.0" prefWidth="150.0" />
+    </children>
+</AnchorPane>

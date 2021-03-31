@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="506.0" prefWidth="916.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.AppointmentCalendarController">
+    <children>
+        <TabPane prefHeight="371.0" prefWidth="915.0" style="-fx-background-color: lightgray;" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab text="Appointments This Week">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="353.0" prefWidth="894.0">
+                            <children>
+                                <TableView layoutX="8.0" layoutY="7.0" prefHeight="333.0" prefWidth="902.0">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" text="Name" />
+                                        <TableColumn prefWidth="75.0" text="Title" />
+                                        <TableColumn prefWidth="109.0" text="Description" />
+                                        <TableColumn prefWidth="111.0" text="Location" />
+                                        <TableColumn prefWidth="75.0" text="Contact" />
+                                        <TableColumn prefWidth="75.0" text="Type" />
+                                        <TableColumn prefWidth="75.0" text="URL" />
+                                        <TableColumn prefWidth="137.0" text="Start Time" />
+                                        <TableColumn prefWidth="123.0" text="End Time" />
+                                    </columns>
+                                </TableView>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Appointments This Month">
+                    <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                            <children>
+                                <TableView layoutX="7.0" layoutY="7.0" prefHeight="345.0" prefWidth="928.0">
+                                    <columns>
+                                        <TableColumn prefWidth="75.0" text="Name" />
+                                        <TableColumn prefWidth="75.0" text="Title" />
+                                        <TableColumn prefWidth="100.0" text="Description" />
+                                        <TableColumn prefWidth="79.0" text="Location" />
+                                        <TableColumn minWidth="9.0" prefWidth="88.0" text="Contact" />
+                                        <TableColumn prefWidth="88.0" text="Type" />
+                                        <TableColumn prefWidth="54.0" text="URL" />
+                                        <TableColumn prefWidth="128.0" text="Start Time" />
+                                        <TableColumn prefWidth="115.0" text="End Time" />
+                                    </columns>
+                                </TableView>
+                            </children></AnchorPane>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+        <Button layoutX="14.0" layoutY="381.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="157.0" text="New Appointment" />
+        <Button layoutX="14.0" layoutY="418.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="157.0" text="Modify Appointmnet" />
+        <Button layoutX="14.0" layoutY="452.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="157.0" text="Delete Appointment" />
+        <Button layoutX="217.0" layoutY="381.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="129.0" text="New Customer" />
+        <Button layoutX="217.0" layoutY="418.0" mnemonicParsing="false" text="Modify Customer" />
+        <Button layoutX="218.0" layoutY="452.0" mnemonicParsing="false" text="Delete Customer" />
+        <Button layoutX="757.0" layoutY="381.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Report" />
+        <Button layoutX="757.0" layoutY="418.0" mnemonicParsing="false" text="User Logs" />
+        <Button layoutX="757.0" layoutY="452.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Exit" />
+    </children>
+</AnchorPane>
+

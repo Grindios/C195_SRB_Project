@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.Report">
+    <children>
+        <TextArea layoutX="14.0" layoutY="23.0" prefHeight="200.0" prefWidth="569.0" />
+        <Label layoutX="22.0" layoutY="239.0" text="Select Report: " />
+        <RadioButton layoutX="18.0" layoutY="273.0" mnemonicParsing="false" text="Appointment Types" />
+        <RadioButton layoutX="18.0" layoutY="303.0" mnemonicParsing="false" text="Cunsoltant Schedule" />
+        <RadioButton layoutX="18.0" layoutY="334.0" mnemonicParsing="false" text="Customer List" />
+        <Button layoutX="400.0" layoutY="360.0" mnemonicParsing="false" text="Exit" />
+    </children>
+</AnchorPane>

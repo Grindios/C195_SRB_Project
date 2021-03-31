@@ -10,12 +10,6 @@ public class DBCountries {
         public static ObservableList<Countries> getAllCountries() {
             ObservableList<Countries> clist = FXCollections.observableArrayList();
 
-            try {
-                String sql = "SELECT * from countries";
-
-                PreparedStatement ps = Database.getConnection();
-
-            }
 
 
             return clist;
@@ -24,9 +18,7 @@ public class DBCountries {
         public static void checkDataConversion(){
             System.out.println("CREATE DATE TEST");
             String sql = "select Create_Date from countries";
-            try {
 
-            }
         }
 
 

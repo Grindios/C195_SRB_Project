@@ -2,8 +2,6 @@ package Database;
 
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 public class DBConnection {
     private static final String protocol = "";
@@ -19,11 +17,8 @@ public class DBConnection {
     private static final String username = "";
     private  static Connection conn = null;
 
-    public static Connection startConnection() {
-        try {
-            Class.ForName(MYSQLJBCDriver);
-            conn = DriverManager.getConnection(jdbcURL, username, Password.getPassword());
-        }
+    public static void startConnection() {
+
     }
 
 
