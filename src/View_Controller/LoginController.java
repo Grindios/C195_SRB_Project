@@ -1,6 +1,10 @@
 package View_Controller;
 
-import Model.Users;
+import DBAccess.DBUsers;
+import Database.DBConnection;
+import Model.Appointment;
+import Model.User;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -37,14 +41,23 @@ public class LoginController implements Initializable {
     public void SigninAct(ActionEvent actionEvent) throws IOException, Exception {
         String userId = userIDTxt.getText();
         String password = passwordTxt.getText();
-        loggedUsers.setUserName(userId);
-        loggedUsers.setPassword(password);
+        loggedUser.setUserName(userId);
+        loggedUser.setPassword(password);
 
         FileHandler userLogFH = new FileHandler("userlog.txt", true);
         SimpleFormatter sf = new SimpleFormatter();
         userLogFH.setFormatter(sf);
         userLog.addHandler(userLogFH);
         userLog.setLevel(Level.INFO);
+
+        try {
+            ObservableList<User> userLoginInfo = DBUsers.getActiveUsers();
+
+            userLoginInfo.forEach((u) -> {
+
+
+            }
+        }
     }
 
 
@@ -64,7 +77,7 @@ public class LoginController implements Initializable {
             alert.close();
         }
     }
-    public static Users loggedUsers = new Users();
+    public static User loggedUser = new User();
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialized");
