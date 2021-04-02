@@ -7,7 +7,10 @@ import Model.User;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
@@ -39,25 +42,27 @@ public class LoginController implements Initializable {
 
     @FXML
     public void SigninAct(ActionEvent actionEvent) throws IOException, Exception {
-        String userId = userIDTxt.getText();
+        String username = userIDTxt.getText();
         String password = passwordTxt.getText();
-        loggedUser.setUserName(userId);
-        loggedUser.setPassword(password);
+        boolean validUser = DBUsers.login(username, password);
+        if(validUser) {
+            ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
+            Stage stage = new Stage();
+            Parent root = FXMLLoader.load(getClass().getResource("AppointmentCalendar.fxml"));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
 
-        FileHandler userLogFH = new FileHandler("userlog.txt", true);
-        SimpleFormatter sf = new SimpleFormatter();
-        userLogFH.setFormatter(sf);
-        userLog.addHandler(userLogFH);
-        userLog.setLevel(Level.INFO);
-
-        try {
-            ObservableList<User> userLoginInfo = DBUsers.getActiveUsers();
-
-            userLoginInfo.forEach((u) -> {
-
-
-            }
         }
+        else {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Login Error");
+            alert.setHeaderText("There was a problem with your user ID or password.");
+            alert.setContentText("Please check to see if you entered the correct login information.");
+            alert.showAndWait();
+        }
+
+
     }
 
 
@@ -81,6 +86,16 @@ public class LoginController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialized");
+        Locale locale = Locale.getDefault();
+        resourceBundle = ResourceBundle.getBundle("language/login", locale);
+        usernameLabel.setText(resourceBundle.getString("username"));
+        passwordLabel.setText(resourceBundle.getString("password"));
+        loginButton.setText(resourceBundle.getString("login"));
+        mainMessage.setText(resourceBundle.getString("message"));
+        languageMessage.setText(resourceBundle.getString("language"));
+        errorHeader = resourceBundle.getString("errorheader");
+        errorTitle = resourceBundle.getString("errortitle");
+        errorText = resourceBundle.getString("errortext");
     }
 
 
