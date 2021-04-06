@@ -1,32 +1,30 @@
 package View_Controller;
 
-import DBAccess.DBUsers;
 import Database.DBConnection;
-import Model.Appointment;
-import Model.User;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.PasswordField;
 import javafx.stage.Stage;
-import javafx.scene.Node;
-
+import javafx.scene.control.TextField;
+import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ResourceBundle;
-import java.util.logging.FileHandler;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.util.logging.SimpleFormatter;
 
 public class LoginController implements Initializable {
-    Logger userLog = Logger.getLogger("userlog.txt");
+    private final static Connection DB_CONN = DBConnection.getConnection();
+    ResultSet rs;
 
     @FXML
     private Button ExitBtn;
@@ -35,31 +33,51 @@ public class LoginController implements Initializable {
     private Button SigninBtn;
 
     @FXML
-    private TextField userIDTxt;
+    private TextField txtuname;
 
     @FXML
-    private TextField passwordTxt;
+    private PasswordField txtpass;
 
     @FXML
     public void SigninAct(ActionEvent actionEvent) throws IOException, Exception {
-        String username = userIDTxt.getText();
-        String password = passwordTxt.getText();
-        boolean validUser = DBUsers.login(username, password);
-        if(validUser) {
-            ((Node) (actionEvent.getSource())).getScene().getWindow().hide();
-            Stage stage = new Stage();
-            Parent root = FXMLLoader.load(getClass().getResource("AppointmentCalendar.fxml"));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
 
+        String uname = txtuname.getText();
+        String pass = txtpass.getText();
+
+        if (uname.equals("") && pass.equals("")) {
+            JOptionPane.showMessageDialog(null, "User ID Password cannot be blank.");
         }
-        else {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Login Error");
-            alert.setHeaderText("There was a problem with your user ID or password.");
-            alert.setContentText("Please check to see if you entered the correct login information.");
-            alert.showAndWait();
+        else
+        {
+            try {
+
+                PreparedStatement pst = DB_CONN.prepareStatement("select * from users where user_Name=? and Password=?");
+
+                pst.setString(1, uname);
+                pst.setString(2, pass);
+
+                rs = pst.executeQuery();
+
+                if(rs.next()) {
+                    JOptionPane.showMessageDialog(null, "Login Success!");
+
+                    Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/AppointmentCalendar.fxml"));
+                    Scene addPartsScene = new Scene(addPartsParent);
+                    Stage addPartsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    addPartsStage.setScene(addPartsScene);
+                    addPartsStage.show();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Login Failed");
+                    txtuname.setText("");
+                    txtpass.setText("");
+
+                }
+
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
 
@@ -82,20 +100,11 @@ public class LoginController implements Initializable {
             alert.close();
         }
     }
-    public static User loggedUser = new User();
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialized");
-        Locale locale = Locale.getDefault();
-        resourceBundle = ResourceBundle.getBundle("language/login", locale);
-        usernameLabel.setText(resourceBundle.getString("username"));
-        passwordLabel.setText(resourceBundle.getString("password"));
-        loginButton.setText(resourceBundle.getString("login"));
-        mainMessage.setText(resourceBundle.getString("message"));
-        languageMessage.setText(resourceBundle.getString("language"));
-        errorHeader = resourceBundle.getString("errorheader");
-        errorTitle = resourceBundle.getString("errortitle");
-        errorText = resourceBundle.getString("errortext");
+
     }
 
 

@@ -7,7 +7,6 @@ public class User {
     private int userId;
     private String userName;
     private String password;
-    private boolean active;
     private LocalDateTime createDate;
     private String createdBy;
     private Timestamp lastUpdate;
@@ -39,14 +38,6 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
     }
 
     public LocalDateTime getCreateDate() {
