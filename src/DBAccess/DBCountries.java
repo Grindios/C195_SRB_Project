@@ -1,55 +1,28 @@
 package DBAccess;
 
 import Database.DBConnection;
-import Model.Countries;
+import View_Controller.AddCustomerController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class DBCountries {
-        public static ObservableList<Countries> getAllCountries() {
-            ObservableList<Countries> clist = FXCollections.observableArrayList();
+    private static ObservableList<String> oblist = FXCollections.observableArrayList();
+    public static ObservableList<String> getAllCountries() {
+        try {
+            Connection con = DBConnection.getConnection();
 
-            try {
-                String sql = "SELECT * from countries";
+            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM countries");
 
-                PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
-
-                ResultSet rs = ps.executeQuery();
-
-                while (rs.next()){
-                    int countryId = rs.getInt("Country_ID");
-                    String countryName = rs.getString("Country");
-                    Countries C = new Countries(countryId, countryName);
-                    clist.add(C);
-                }
+            while (rs.next()){
+                oblist.add(rs.getString("Country"));
             }
-            catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-
-
-
-            return clist;
+        }catch (SQLException ex) {
+            Logger.getLogger(AddCustomerController.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        public static void checkDataConversion(){
-            System.out.println("CREATE DATE TEST");
-            String sql = "select Create_Date from countries";
-            try{
-                PreparedStatement ps = DBConnection.getConnection().prepareStatement(sql);
-                ResultSet rs = ps.executeQuery();
-                while(rs.next()){
-                    Timestamp ts = rs.getTimestamp("Create_Date");
-                    System.out.println("CD: " + ts.toLocalDateTime().toString());
-                }
-            }
-            catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-
-        }
-
-
+        return oblist;
+    }
 }

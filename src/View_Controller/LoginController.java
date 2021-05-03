@@ -1,6 +1,6 @@
 package View_Controller;
 
-import Database.DBConnection;
+import DBAccess.DBUser;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,20 +17,18 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
-    private final static Connection DB_CONN = DBConnection.getConnection();
-    ResultSet rs;
+
+
 
     @FXML
     private Button ExitBtn;
 
     @FXML
     private Button SigninBtn;
+
 
     @FXML
     private TextField txtuname;
@@ -43,41 +41,25 @@ public class LoginController implements Initializable {
 
         String uname = txtuname.getText();
         String pass = txtpass.getText();
+        boolean enter = DBUser.getUserId(pass, uname);
+
+
+
 
         if (uname.equals("") && pass.equals("")) {
             JOptionPane.showMessageDialog(null, "User ID Password cannot be blank.");
         }
-        else
-        {
-            try {
-
-                PreparedStatement pst = DB_CONN.prepareStatement("select * from users where user_Name=? and Password=?");
-
-                pst.setString(1, uname);
-                pst.setString(2, pass);
-
-                rs = pst.executeQuery();
-
-                if(rs.next()) {
-                    JOptionPane.showMessageDialog(null, "Login Success!");
-
-                    Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/AppointmentCalendar.fxml"));
-                    Scene addPartsScene = new Scene(addPartsParent);
-                    Stage addPartsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                    addPartsStage.setScene(addPartsScene);
-                    addPartsStage.show();
-                }
-                else {
-                    JOptionPane.showMessageDialog(null, "Login Failed");
-                    txtuname.setText("");
-                    txtpass.setText("");
-
-                }
-
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+        if (enter == true) {
+            Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/CustomerSelection.fxml"));
+            Scene addPartsScene = new Scene(addPartsParent);
+            Stage addPartsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+            addPartsStage.setScene(addPartsScene);
+            addPartsStage.show();
+        }
+        if (enter == false) {
+            JOptionPane.showMessageDialog(null, "Login Failed");
+            txtuname.setText("");
+            txtpass.setText("");
         }
 
 
