@@ -30,6 +30,9 @@ public class DBCustomers {
         }
         return oblist;
     }
+    public static void setCustomers(String name, String address, String country, String Division, String postal, String phone) {
+
+    }
 
 
 }
