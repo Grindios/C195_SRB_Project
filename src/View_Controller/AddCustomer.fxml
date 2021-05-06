@@ -16,11 +16,12 @@
         <TextField fx:id="customerNameTxt" layoutX="147.0" layoutY="60.0" />
         <TextField fx:id="addressTxt" layoutX="147.0" layoutY="94.0" />
         <TextField fx:id="zipTxt" layoutX="147.0" layoutY="198.0" />
-        <TextField layoutX="147.0" layoutY="231.0" />
+        <TextField fx:id="phoneNumTxt" layoutX="147.0" layoutY="231.0" />
         <ComboBox fx:id="countryCmb" layoutX="147.0" layoutY="164.0" prefHeight="26.0" prefWidth="171.0" promptText="--Select Country--" />
       <Button fx:id="backBtn" layoutX="17.0" layoutY="14.0" mnemonicParsing="false" onAction="#GoBackAct" text="&lt; Back" />
       <ComboBox fx:id="divisionCmb" layoutX="392.0" layoutY="164.0" onMouseEntered="#FilterFrstLvlDivAct" prefHeight="26.0" prefWidth="171.0" promptText="--Select Division--" />
       <Label fx:id="customerIdLbl" layoutX="397.0" layoutY="19.0" />
       <Label layoutX="311.0" layoutY="19.0" text="Customer ID:" />
+
     </children>
 </AnchorPane>

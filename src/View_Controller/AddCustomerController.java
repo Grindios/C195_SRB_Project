@@ -1,6 +1,7 @@
 package View_Controller;
 
 import DBAccess.DBCountries;
+import DBAccess.DBCustomers;
 import DBAccess.DBFirstLvlDivision;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -27,11 +28,12 @@ public class AddCustomerController implements Initializable {
     @FXML
     TextField customerNameTxt;
     @FXML
+    TextField phoneNumTxt;
+    @FXML
     TextField addressTxt;
     @FXML
     TextField zipTxt;
-    @FXML
-    TextField phoneTxt;
+
 
     private String catchError = new String();
     public void FilterFrstLvlDivAct(MouseEvent mouseEvent) {
@@ -40,35 +42,23 @@ public class AddCustomerController implements Initializable {
         divisionCmb.setItems(DBFirstLvlDivision.filterFirstLvlDiv(selectedCountry));
     }
 
-    public void SaveAct(ActionEvent actionEvent) {
+    public void SaveAct(ActionEvent actionEvent) throws IOException {
         String name = customerNameTxt.getText();
         String address = addressTxt.getText();
+        String phone = phoneNumTxt.getText();
         String country = countryCmb.getValue();
         String division = divisionCmb.getValue();
         String postal = zipTxt.getText();
-        String phone = phoneTxt.getText();
 
-        System.out.println(name);
 
-        try{
-            catchError = getValidation(name,
-                    address,
-                    country,
-                    division,
-                    postal,
-                    phone,
-                    catchError);
-            if (catchError.length() > 0) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Product Addition Warning");
-                alert.setHeaderText("The product was NOT added!");
-                alert.setContentText(catchError);
-                alert.showAndWait();
-                catchError = "";
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        DBCustomers.setCustomers(name, address, postal, phone, division);
+
+        Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/CustomerSelection.fxml"));
+        Scene addPartsScene = new Scene(addPartsParent);
+        Stage addPartsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        addPartsStage.setScene(addPartsScene);
+        addPartsStage.show();
+
     }
 
 

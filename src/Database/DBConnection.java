@@ -36,6 +36,7 @@ public class DBConnection {
     }
 
     public static Connection getConnection() {
+        System.out.println("Connection Established");
         return conn;
     }
 

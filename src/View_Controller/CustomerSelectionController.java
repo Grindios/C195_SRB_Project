@@ -48,6 +48,9 @@ private TableColumn<Customer, String> phoneCol;
         Stage addPartsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         addPartsStage.setScene(addPartsScene);
         addPartsStage.show();
+
+        //clear customer table
+        CustomerTable.setItems(null);
     }
 
     public void ExitCustomerAct(ActionEvent actionEvent) {
@@ -91,16 +94,16 @@ private TableColumn<Customer, String> phoneCol;
         }
     }
 
-@FXML
-public void updateCustomerTbl() {CustomerTable.setItems(DBCustomers.getCustomers());}
+    @FXML
+    public void updateCustomerTbl() {CustomerTable.setItems(DBCustomers.getCustomers());}
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         custCol.setCellValueFactory(new PropertyValueFactory<>("customer"));
         addyCol.setCellValueFactory(new PropertyValueFactory<>("addy"));
         phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
         updateCustomerTbl();
-        System.out.println("Log in successful");
     }
 
 
