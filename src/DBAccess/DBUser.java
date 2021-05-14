@@ -11,7 +11,7 @@ public class DBUser {
 
 
 
-    public static boolean getUserId(String uname, String pass) {
+    public static boolean loginUser(String uname, String pass) {
         boolean enter = false;
         try {
 
@@ -35,6 +35,25 @@ public class DBUser {
         }
 
         return enter;
+    }
+    public static int getUserID(String userName) {
+        int userID = 0;
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement pst;
+
+            pst = con.prepareStatement(
+                    "select * from users where User_Name = ?;");
+            pst.setString(1, userName);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                userID = rs.getInt("User_ID");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return userID;
+
     }
 
 }

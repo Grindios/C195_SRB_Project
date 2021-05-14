@@ -35,6 +35,7 @@ public class AddCustomerController implements Initializable {
     TextField zipTxt;
 
 
+
     private String catchError = new String();
     public void FilterFrstLvlDivAct(MouseEvent mouseEvent) {
         String selectedCountry;
@@ -95,26 +96,6 @@ public class AddCustomerController implements Initializable {
         countryCmb.setItems(DBCountries.getAllCountries());
     }
 
-    public static String getValidation(String name, String address, String country, String division, String phone, String postal, String ProductError){
-        if (name == null) {
-            ProductError = ProductError + " Name field required. ";
-        }
-        if (address == null) {
-            ProductError = ProductError + " Address field required. ";
-        }
-        if(country == null) {
-            ProductError = ProductError + " Country field required. ";
-        }
-        if (division == null) {
-            ProductError = ProductError + " Division field required. ";
-        }
-        if (phone == null) {
-            ProductError = ProductError + " Phone number required. ";
-        }
-        if (postal == null) {
-            ProductError = ProductError + " Postal code required. ";
-        }
-        return ProductError;
-    }
+
 
 }

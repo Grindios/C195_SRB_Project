@@ -1,6 +1,7 @@
 package View_Controller;
 
 import DBAccess.DBUser;
+import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +22,7 @@ import java.util.ResourceBundle;
 
 public class LoginController implements Initializable {
 
-
+    static int selectedUserIndex = 0;
 
     @FXML
     private Button ExitBtn;
@@ -41,7 +42,10 @@ public class LoginController implements Initializable {
 
         String uname = txtuname.getText();
         String pass = txtpass.getText();
-        boolean enter = DBUser.getUserId(pass, uname);
+        boolean enter = DBUser.loginUser(pass, uname);
+        selectedUserIndex = DBUser.getUserID(uname);
+
+
 
 
 

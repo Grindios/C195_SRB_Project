@@ -40,6 +40,10 @@ private TableColumn<Customer, String > custCol;
 private TableColumn<Customer, String> addyCol;
 @FXML
 private TableColumn<Customer, String> phoneCol;
+@FXML
+private TableColumn<Customer, Integer> idCol;
+
+private static int selectedCustomerIndex = 0;
 
     public void NewCustomerAct(ActionEvent actionEvent) throws IOException {
 
@@ -94,17 +98,7 @@ private TableColumn<Customer, String> phoneCol;
         }
     }
 
-    @FXML
-    public void updateCustomerTbl() {CustomerTable.setItems(DBCustomers.getCustomers());}
 
-
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        custCol.setCellValueFactory(new PropertyValueFactory<>("customer"));
-        addyCol.setCellValueFactory(new PropertyValueFactory<>("addy"));
-        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        updateCustomerTbl();
-    }
 
 
     public void AppointmentsAct(ActionEvent actionEvent) throws IOException {
@@ -114,4 +108,69 @@ private TableColumn<Customer, String> phoneCol;
         addPartsStage.setScene(addPartsScene);
         addPartsStage.show();
     }
+
+    public void deleteAct(ActionEvent actionEvent) {
+
+        Customer customer = CustomerTable.getSelectionModel().getSelectedItem();
+        String check_id = Integer.toString(customer.getId());
+        String name = customer.getCustomer();
+        String checked = DBCustomers.doesAppointmentExist(check_id);
+
+
+        if (checked.isBlank()) {
+            JOptionPane.showMessageDialog(null, name + " deleted.");
+            DBCustomers.deleteCustomer(check_id);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, name + " cannot be deleted! \n Appointments are still assigned to this customer.");
+
+        }
+        updateCustomerTbl();
+    }
+
+    public void ModifyCustomerAct(ActionEvent actionEvent) throws IOException {
+
+        Customer selectedCustomer = CustomerTable.getSelectionModel().getSelectedItem();
+        selectedCustomerIndex = selectedCustomer.getId();
+        if (selectedCustomer == null) {
+            Alert nullAlert = new Alert(Alert.AlertType.ERROR);
+            nullAlert.setTitle("Customer Modification Error");
+            nullAlert.setHeaderText("The customer is NOT able to be modified!");
+            nullAlert.setContentText("There was no customer selected!");
+            nullAlert.showAndWait();
+        }
+        else {
+            System.out.println("Attempting to modify");
+            try {
+                Parent modifyPartScreen = FXMLLoader.load(getClass().getResource("/View_Controller/ModifyCustomer.fxml"));
+                Scene modifyPartScene = new Scene(modifyPartScreen);
+                Stage winModifyPart = (Stage)((Node)actionEvent.getSource()).getScene().getWindow();
+                winModifyPart.setTitle("Modify Customer");
+                winModifyPart.setScene(modifyPartScene);
+                winModifyPart.show();
+            }
+            catch (IOException e) {
+                System.out.println("Mod failed.");
+            }
+        }
+
+    }
+    public static int getSelectedCustomerIndex() {
+        return selectedCustomerIndex;
+    }
+    @FXML
+    public void updateCustomerTbl() {CustomerTable.setItems(DBCustomers.getCustomers());}
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        custCol.setCellValueFactory(new PropertyValueFactory<>("customer"));
+        addyCol.setCellValueFactory(new PropertyValueFactory<>("addy"));
+        phoneCol.setCellValueFactory(new PropertyValueFactory<>("phone"));
+        idCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        updateCustomerTbl();
+        System.out.println("Welcome " + LoginController.selectedUserIndex+"!");
+    }
+
 }

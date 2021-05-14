@@ -1,12 +1,27 @@
 package Model;
 
-public class Customer {
-    String customer,addy,phone;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
-    public Customer(String customer, String addy, String phone) {
+public class Customer {
+    String customer,addy,phone,postal;
+    int id,division;
+
+    public Customer(String customer, String addy, String phone, int id, int division, String postal_code, String postal) {
         this.customer = customer;
         this.addy = addy;
         this.phone = phone;
+        this.id = id;
+        this.division = division;
+        this.postal = postal;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCustomer() {
@@ -32,4 +47,14 @@ public class Customer {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    public String getPostal() {
+        return postal;
+    }
+
+    public void setPostal(String postal) {
+        this.postal = postal;
+    }
+
+
 }

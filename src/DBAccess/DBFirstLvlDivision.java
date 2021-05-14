@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 
 import javax.swing.*;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -36,7 +37,7 @@ public class DBFirstLvlDivision {
                 oblist.clear();
                 Connection con = DBConnection.getConnection();
 
-                ResultSet rs = con.createStatement().executeQuery("SELECT * FROM first_level_divisions where Country_ID = 230;");
+                ResultSet rs = con.createStatement().executeQuery("SELECT * FROM first_level_divisions where Country_ID = 2;");
 
                 while (rs.next()){
                     oblist.add(rs.getString("Division"));
@@ -59,6 +60,25 @@ public class DBFirstLvlDivision {
             Logger.getLogger(AddCustomerController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return oblist;
+    }
+
+    public static String getDivisionName(String Division_ID) {
+        String DivisionName = " ";
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement pst;
+
+            pst = con.prepareStatement(
+                    "select * from first_level_divisions where Division_ID = ?;");
+            pst.setInt(1, Integer.parseInt(Division_ID));
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                DivisionName = rs.getString("Division");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return DivisionName;
     }
 
 

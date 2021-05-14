@@ -8,18 +8,19 @@
         <Label layoutX="64.0" layoutY="43.0" text="Customer Name:" />
         <Label layoutX="121.0" layoutY="73.0" text="Address:" />
         <Label layoutX="114.0" layoutY="184.0" text="Zip Code: " />
-        <Label layoutX="357.0" layoutY="150.0" text="Country:" />
-        <Label layoutX="135.0" layoutY="142.0" text="City:" />
+        <Label layoutX="86.0" layoutY="142.0" text="Country:" />
+        <Label layoutX="357.0" layoutY="150.0" text="Division:" />
         <Label layoutX="81.0" layoutY="217.0" text="Phone Number:" />
-        <Label layoutX="69.0" layoutY="107.0" text="Address Line 2: " />
-        <Button layoutX="150.0" layoutY="326.0" mnemonicParsing="false" text="Save" />
+        <Button fx:id="saveBtn" layoutX="150.0" layoutY="326.0" mnemonicParsing="false" onAction="#SaveAct" text="Save" />
         <Button layoutX="357.0" layoutY="326.0" mnemonicParsing="false" text="Exit" />
-        <TextField layoutX="193.0" layoutY="38.0" />
-        <TextField layoutX="193.0" layoutY="68.0" />
-        <TextField layoutX="181.0" layoutY="102.0" />
-        <TextField layoutX="174.0" layoutY="137.0" />
-        <TextField layoutX="181.0" layoutY="179.0" />
-        <TextField layoutX="193.0" layoutY="220.0" />
-        <ComboBox layoutX="422.0" layoutY="145.0" prefWidth="150.0" />
+        <TextField fx:id="nameTxt" layoutX="193.0" layoutY="38.0" />
+        <TextField fx:id="addressTxt" layoutX="193.0" layoutY="68.0" />
+        <TextField fx:id="postalTxt" layoutX="181.0" layoutY="179.0" />
+        <TextField fx:id="phoneTxt" layoutX="193.0" layoutY="220.0" />
+        <ComboBox fx:id="divisionCmb" layoutX="422.0" layoutY="145.0" onMouseEntered="#FilterFrstLvlDivAct" prefWidth="150.0" />
+      <Button fx:id="backBtn" mnemonicParsing="false" onAction="#GoBackAct" text="&lt; Back" />
+      <ComboBox fx:id="countryCmb" layoutX="183.0" layoutY="137.0" prefWidth="150.0" />
+      <Label layoutX="400.0" layoutY="18.0" text="Customer ID: " />
+      <Label layoutX="497.0" layoutY="18.0" />
     </children>
 </AnchorPane>
