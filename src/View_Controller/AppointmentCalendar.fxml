@@ -5,53 +5,26 @@
 
 <AnchorPane prefHeight="511.0" prefWidth="1083.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.AppointmentCalendarController">
     <children>
-        <TabPane prefHeight="375.0" prefWidth="996.0" style="-fx-background-color: lightgray;" tabClosingPolicy="UNAVAILABLE">
-            <tabs>
-                <Tab fx:id="thisWeekBtn" text="Appointments This Week">
-                    <content>
-                        <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="1064.0">
-                            <children>
-                                <TableView fx:id="thisWeekAptTbl" layoutX="25.0" layoutY="15.0" prefHeight="310.0" prefWidth="996.0">
-                                    <columns>
-                                        <TableColumn fx:id="aptIDCol" prefWidth="104.0" text="ID" />
-                                        <TableColumn fx:id="titleCol" prefWidth="107.0" text="Title" />
-                                        <TableColumn fx:id="descriptionCol" prefWidth="103.0" text="Description" />
-                                        <TableColumn fx:id="locationCol" prefWidth="127.0" text="Location" />
-                                        <TableColumn fx:id="contactCol" prefWidth="97.0" text="Contact" />
-                                        <TableColumn fx:id="typeCol" minWidth="0.0" prefWidth="85.0" text="Type" />
-                                        <TableColumn fx:id="startCol" prefWidth="103.0" text="Start Time" />
-                                        <TableColumn fx:id="endCol" prefWidth="126.0" text="End Time" />
-                                        <TableColumn fx:id="cusomterIDCol" prefWidth="121.0" text="Customer_ID" />
-                                    </columns>
-                                </TableView>
-                            </children></AnchorPane>
-                    </content>
-                </Tab>
-                <Tab text="Appointments This Month">
-                    <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                            <children>
-                                <TableView layoutX="7.0" layoutY="7.0" prefHeight="345.0" prefWidth="928.0">
-                                    <columns>
-                                        <TableColumn prefWidth="75.0" text="Name" />
-                                        <TableColumn prefWidth="75.0" text="Title" />
-                                        <TableColumn prefWidth="100.0" text="Description" />
-                                        <TableColumn prefWidth="79.0" text="Location" />
-                                        <TableColumn minWidth="9.0" prefWidth="88.0" text="Contact" />
-                                        <TableColumn prefWidth="88.0" text="Type" />
-                                        <TableColumn prefWidth="54.0" text="URL" />
-                                        <TableColumn prefWidth="128.0" text="Start Time" />
-                                        <TableColumn prefWidth="115.0" text="End Time" />
-                                    </columns>
-                                </TableView>
-                            </children></AnchorPane>
-                    </content>
-                </Tab>
-            </tabs>
-        </TabPane>
+        <TabPane prefHeight="375.0" prefWidth="996.0" style="-fx-background-color: lightgray;" tabClosingPolicy="UNAVAILABLE" />
         <Button fx:id="addAppointmentBtn" layoutX="24.0" layoutY="381.0" mnemonicParsing="false" onAction="#AddAppointmentAct" prefHeight="26.0" prefWidth="157.0" text="New Appointment" />
-        <Button layoutX="190.0" layoutY="381.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="157.0" text="Modify Appointmnet" />
-        <Button layoutX="362.0" layoutY="381.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="157.0" text="Delete Appointment" />
-      <Button fx:id="exitBtn" layoutX="934.0" layoutY="462.0" mnemonicParsing="false" onAction="#ExitAct" text="Exit" />
+        <Button fx:id="modAppointmentBtn" layoutX="24.0" layoutY="418.0" mnemonicParsing="false" onAction="#ModAptAct" prefHeight="26.0" prefWidth="157.0" text="Modify Appointmnet" />
+        <Button fx:id="deleteBtn" layoutX="24.0" layoutY="456.0" mnemonicParsing="false" onAction="#DeleteAptAct" prefHeight="26.0" prefWidth="157.0" text="Delete Appointment" />
+      <Button fx:id="exitBtn" layoutX="996.0" layoutY="462.0" mnemonicParsing="false" onAction="#ExitAct" text="Exit" />
+      <TableView fx:id="appointmentsTbl" prefHeight="375.0" prefWidth="1083.0">
+        <columns>
+          <TableColumn fx:id="aptIDCol" prefWidth="63.0" text="Apt ID" />
+          <TableColumn fx:id="titleCol" prefWidth="131.0" text="Title" />
+            <TableColumn fx:id="descriptionCol" prefWidth="96.0" text="Description" />
+            <TableColumn fx:id="locationCol" prefWidth="97.0" text="Location" />
+            <TableColumn fx:id="contactCol" prefWidth="115.0" text="Contact" />
+            <TableColumn fx:id="typeCol" prefWidth="117.0" text="Type" />
+            <TableColumn fx:id="startCol" prefWidth="178.0" text="Start Time" />
+            <TableColumn fx:id="endCol" prefWidth="174.0" text="End Time " />
+            <TableColumn fx:id="cusomterIDCol" prefWidth="109.0" text="Customer ID" />
+        </columns>
+      </TableView>
+      <Button fx:id="allAppointmentBtn" layoutX="212.0" layoutY="381.0" mnemonicParsing="false" onAction="#AllAppointmentsAct" prefHeight="26.0" prefWidth="173.0" text="All Appointments" />
+      <Button fx:id="weeklyAptBtn" layoutX="210.0" layoutY="418.0" mnemonicParsing="false" onAction="#WeeklyAppointmentsAct" prefHeight="26.0" prefWidth="173.0" text="Weekly Appointments" />
+      <Button fx:id="monthlyAptBtn" layoutX="210.0" layoutY="462.0" mnemonicParsing="false" onAction="#monthlyAppointmentAct" prefHeight="26.0" prefWidth="173.0" text="Monthly Appointments" />
     </children>
 </AnchorPane>

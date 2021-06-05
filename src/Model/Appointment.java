@@ -1,15 +1,16 @@
 package Model;
 
+import DBAccess.DBContacts;
+
 import javax.swing.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Appointment {
     String title, description, location, type, start, end;
-    int aptID, customerID, userID, contactID;
+    int aptID, customerID, userID, contact_id;
 
-    public Appointment (int aptID,String title, String description, String location, String type, String start, String end, int customerID, int userID, int contactID) {
+    public Appointment (int aptID,String title, String description, String location, String type, String start, String end, int customerID, int userID, int contact_id) {
         this.aptID = aptID;
         this.title = title;
         this.description = description;
@@ -19,7 +20,18 @@ public class Appointment {
         this.end = end;
         this.customerID = customerID;
         this.userID = userID;
-        this.contactID = contactID;
+        this.contact_id = contact_id;
+
+    }
+
+    public String getContact_id() {
+        String contactName = "";
+        contactName = DBContacts.getContactName(contact_id);
+        return contactName;
+    }
+
+    public void setContact_id(int contact_id) {
+        this.contact_id = contact_id;
     }
 
     public String getTitle() {
@@ -92,14 +104,6 @@ public class Appointment {
 
     public void setUserID(int userID) {
         this.userID = userID;
-    }
-
-    public int getContactID() {
-        return contactID;
-    }
-
-    public void setContactID(int contactID) {
-        this.contactID = contactID;
     }
 
 

@@ -1,7 +1,9 @@
 package View_Controller;
 
 import DBAccess.DBAppointment;
+import DBAccess.DBCustomers;
 import Model.Appointment;
+import Model.Customer;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,10 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -21,7 +20,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AppointmentCalendarController implements Initializable {
-
+ // weekly columns
     @FXML
     private TableColumn<Appointment, String> aptIDCol;
     @FXML
@@ -41,12 +40,29 @@ public class AppointmentCalendarController implements Initializable {
     @FXML
     private TableColumn<Appointment, Integer> cusomterIDCol;
 
+    //Buttons
+    @FXML
+    private Button allAppointmentBtn;
+    @FXML
+    private Button weeklyAptBtn;
+    @FXML
+    private Button monthlyAptBtn;
+
+
+
+
 
     @FXML
-    private TableView<Appointment> thisWeekAptTbl;
+    private TableView<Appointment> appointmentsTbl;
 
     @FXML
-    public  void updateAppointmentsTbl() {thisWeekAptTbl.setItems(DBAppointment.getAppointments());}
+    public  void updateweekAppointmentsTbl() {appointmentsTbl.setItems(DBAppointment.getAppointmentsThisWeek());}
+    @FXML
+    public void updatemonthAppointmentTbl() {appointmentsTbl.setItems(DBAppointment.getAppointmentsThisMonth());}
+    @FXML
+    public void updateAllAppointmentTBl() {appointmentsTbl.setItems(DBAppointment.getAllAppointments());}
+
+    private static int selected_Apt = 0;
 
     public void ExitAct(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -70,22 +86,64 @@ public class AppointmentCalendarController implements Initializable {
         addPartsStage.show();
     }
 
+
+
+    @FXML
+    public void DeleteAptAct(ActionEvent actionEvent) {
+        Appointment appointment = appointmentsTbl.getSelectionModel().getSelectedItem();
+        int apt_id = appointment.getAptID();
+        DBAppointment.deleteAppointment(apt_id);
+        updateAllAppointmentTBl();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //week view
         aptIDCol.setCellValueFactory(new PropertyValueFactory<>("aptID"));
         titleCol.setCellValueFactory(new PropertyValueFactory<>("title"));
         descriptionCol.setCellValueFactory(new PropertyValueFactory<>("description"));
         locationCol.setCellValueFactory(new PropertyValueFactory<>("location"));
-        contactCol.setCellValueFactory(new PropertyValueFactory<>("contactID"));
+        contactCol.setCellValueFactory(new PropertyValueFactory<>("contact_id"));
         typeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
         startCol.setCellValueFactory(new PropertyValueFactory<>("start"));
         endCol.setCellValueFactory(new PropertyValueFactory<>("end"));
         cusomterIDCol.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        updateAllAppointmentTBl();
 
-        updateAppointmentsTbl();
+
 
     }
 
+    public void AllAppointmentsAct(ActionEvent actionEvent) {
+        updateAllAppointmentTBl();
+    }
+
+    public void WeeklyAppointmentsAct(ActionEvent actionEvent) {
+        updateweekAppointmentsTbl();
+    }
 
 
+    public void monthlyAppointmentAct(ActionEvent actionEvent) {
+        updatemonthAppointmentTbl();
+    }
+
+    public void ModAptAct(ActionEvent actionEvent) {
+        Appointment selectedCustomer = appointmentsTbl.getSelectionModel().getSelectedItem();
+        selected_Apt = selectedCustomer.getAptID();
+
+
+            try {
+                Parent modifyPartScreen = FXMLLoader.load(getClass().getResource("/View_Controller/ModifyAppointments.fxml"));
+                Scene modifyPartScene = new Scene(modifyPartScreen);
+                Stage winModifyPart = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                winModifyPart.setTitle("Modify Appointment");
+                winModifyPart.setScene(modifyPartScene);
+                winModifyPart.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+    }
+    public static int getSelectedAppointmentIndex() {
+        return selected_Apt; }
 }

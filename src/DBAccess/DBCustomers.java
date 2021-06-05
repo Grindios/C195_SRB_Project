@@ -311,6 +311,7 @@ public class DBCustomers {
 
     private static ObservableList<String> customerList = FXCollections.observableArrayList();
     public static ObservableList<String> getAllCustomers() {
+        customerList.clear();
         try {
             Connection con = DBConnection.getConnection();
 

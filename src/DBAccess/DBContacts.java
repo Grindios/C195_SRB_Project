@@ -15,6 +15,7 @@ import java.util.logging.Logger;
 public class DBContacts {
     private static ObservableList<String> oblist = FXCollections.observableArrayList();
     public static ObservableList<String> getAllcontacts() {
+        oblist.clear();
         try {
             Connection con = DBConnection.getConnection();
 
@@ -50,5 +51,27 @@ public class DBContacts {
             }
             return id;
 
+    }
+
+
+    public static String getContactName(int contact_ID) {
+        String contactName = " ";
+
+        try {
+            Connection con = DBConnection.getConnection();
+            PreparedStatement pst;
+
+            pst = con.prepareStatement(
+                    "select * from contacts where Contact_ID = ?;");
+            pst.setInt(1, contact_ID);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                contactName = rs.getString("Contact_Name");
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        System.out.println("This Works");
+        return contactName;
     }
 }
