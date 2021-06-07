@@ -1,9 +1,13 @@
 package Model;
 
+import LocaleFiles.LocaleInfo;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+import java.util.ResourceBundle;
+
 public class Customer {
+    public static String entryValidation;
     String customer,addy,phone,postal;
     int id,division;
 
@@ -15,6 +19,8 @@ public class Customer {
         this.division = division;
         this.postal = postal;
     }
+
+
 
     public int getId() {
         return id;
@@ -56,5 +62,25 @@ public class Customer {
         this.postal = postal;
     }
 
+    public static String entryValidation(String name, String address, String phone, String division, String postal,String error) {
+        ResourceBundle rb = ResourceBundle.getBundle("LocaleFiles/Nat", LocaleInfo.getLocale());
+        if (name.isEmpty()) {
+            error = error + rb.getString("Model.Customer.valName");
+        }
+        if (address.isEmpty()) {
+            error = error + rb.getString("Model.Customer.valaddress");
+        }
+        if (phone.isEmpty()) {
+            error = error + rb.getString("Model.Customer.valphone");
+        }
+        if (division == null) {
+            error = error + rb.getString("Model.Customer.valdivision");
+        }
+        if (postal.isEmpty()) {
+            error = error + rb.getString("Model.Customer.valpostal");
+        }
+
+        return error;
+    }
 
 }

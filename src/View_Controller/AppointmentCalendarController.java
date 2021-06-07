@@ -52,6 +52,8 @@ public class AppointmentCalendarController implements Initializable {
 
 
 
+
+
     @FXML
     private TableView<Appointment> appointmentsTbl;
 
@@ -127,20 +129,26 @@ public class AppointmentCalendarController implements Initializable {
         updatemonthAppointmentTbl();
     }
 
-    public void ModAptAct(ActionEvent actionEvent) {
+    public void ModAptAct(ActionEvent actionEvent) throws IOException {
         Appointment selectedCustomer = appointmentsTbl.getSelectionModel().getSelectedItem();
-        selected_Apt = selectedCustomer.getAptID();
 
 
-            try {
-                Parent modifyPartScreen = FXMLLoader.load(getClass().getResource("/View_Controller/ModifyAppointments.fxml"));
-                Scene modifyPartScene = new Scene(modifyPartScreen);
-                Stage winModifyPart = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
-                winModifyPart.setTitle("Modify Appointment");
-                winModifyPart.setScene(modifyPartScene);
-                winModifyPart.show();
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (selectedCustomer == null) {
+                Alert nullAlert = new Alert(Alert.AlertType.ERROR);
+                nullAlert.setTitle("Error");
+                nullAlert.setHeaderText("Appointment Not selected");
+                nullAlert.setContentText("Please select an appointment");
+                nullAlert.showAndWait();
+            }
+            else {
+                 selected_Apt = selectedCustomer.getAptID();
+                    Parent modifyPartScreen = FXMLLoader.load(getClass().getResource("/View_Controller/ModifyAppointments.fxml"));
+                    Scene modifyPartScene = new Scene(modifyPartScreen);
+                    Stage winModifyPart = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+                    winModifyPart.setTitle("Modify Appointment");
+                    winModifyPart.setScene(modifyPartScene);
+                    winModifyPart.show();
+
             }
 
     }

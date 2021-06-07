@@ -3,10 +3,10 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="414.0" prefWidth="701.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.CustomerSelectionController">
+<AnchorPane prefHeight="414.0" prefWidth="636.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.CustomerSelectionController">
     <children>
         <Button fx:id="modifyBtn" layoutX="20.0" layoutY="234.0" mnemonicParsing="false" onAction="#ModifyCustomerAct" prefHeight="26.0" prefWidth="146.0" text="Modify Customer" />
-      <TableView fx:id="CustomerTable" layoutX="20.0" layoutY="28.0" prefHeight="200.0" prefWidth="635.0">
+      <TableView fx:id="CustomerTable" layoutX="20.0" layoutY="28.0" prefHeight="200.0" prefWidth="573.0">
         <columns>
             <TableColumn fx:id="idCol" prefWidth="64.0" text="ID" />
           <TableColumn fx:id="custCol" prefWidth="159.0" text="Customer" />
@@ -17,7 +17,7 @@
       <Button fx:id="deleteBtn" layoutX="20.0" layoutY="314.0" mnemonicParsing="false" onAction="#deleteAct" prefHeight="26.0" prefWidth="146.0" text="Delete Customer" />
       <Button fx:id="newCustomerBtn" layoutX="20.0" layoutY="273.0" mnemonicParsing="false" onAction="#NewCustomerAct" prefHeight="26.0" prefWidth="146.0" text="New Customer" />
       <Button fx:id="appointmentsBtn" layoutX="221.0" layoutY="234.0" mnemonicParsing="false" onAction="#AppointmentsAct" prefHeight="26.0" prefWidth="113.0" text="Appointments" />
-      <Button layoutX="436.0" layoutY="273.0" mnemonicParsing="false" onAction="#SignOutAct" text="Sign out" />
-      <Button layoutX="455.0" layoutY="234.0" mnemonicParsing="false" onAction="#ExitCustomerAct" text="Exit" />
+      <Button fx:id="signOutBtn" layoutX="436.0" layoutY="273.0" mnemonicParsing="false" onAction="#SignOutAct" text="Sign out" />
+      <Button fx:id="exitBtn" layoutX="455.0" layoutY="234.0" mnemonicParsing="false" onAction="#ExitCustomerAct" text="Exit" />
     </children>
 </AnchorPane>

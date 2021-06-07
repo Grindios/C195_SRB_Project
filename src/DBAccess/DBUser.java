@@ -23,7 +23,6 @@ public class DBUser {
             rs = pst.executeQuery();
 
             if (rs.next()) {
-                JOptionPane.showMessageDialog(null, "Login Success!");
                 enter = true;
             } else {
                 enter = false;

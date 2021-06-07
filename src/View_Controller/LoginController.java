@@ -1,7 +1,7 @@
 package View_Controller;
 
 import DBAccess.DBUser;
-import Model.User;
+import LocaleFiles.LocaleInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,20 +16,28 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Button;
 import java.io.IOException;
 import java.net.URL;
+import java.time.ZoneId;
+import java.util.Locale;
 import java.util.ResourceBundle;
+import javafx.scene.control.Label;
 
 public class LoginController implements Initializable {
 
     static int selectedUserIndex = 0;
 
     @FXML
-    private Button ExitBtn;
+    private javafx.scene.control.Button exitBtn;
 
     @FXML
-    private Button SigninBtn;
+    private javafx.scene.control.Button signinBtn;
 
+    @FXML
+    private Label unameLbl;
+    @FXML
+    private Label psswrdLbl;
 
     @FXML
     private TextField txtuname;
@@ -37,6 +45,22 @@ public class LoginController implements Initializable {
     @FXML
     private PasswordField txtpass;
 
+    @FXML
+    private Label zoneLbl;
+    @FXML
+    private Label ZONEIDLBL;
+    ResourceBundle rb = ResourceBundle.getBundle("LocaleFiles/Nat", LocaleInfo.getLocale());
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Initialized");
+        zoneLbl.setText(zone.getId());
+        unameLbl.setText(rb.getString("Login.username"));
+        psswrdLbl.setText(rb.getString("Login.password"));
+        exitBtn.setText(rb.getString("Login.exit"));
+        signinBtn.setText(rb.getString("Login.signin"));
+        ZONEIDLBL.setText(rb.getString("Login.zoneID"));
+
+    }
     @FXML
     public void SigninAct(ActionEvent actionEvent) throws IOException, Exception {
 
@@ -47,11 +71,8 @@ public class LoginController implements Initializable {
 
 
 
-
-
-
         if (uname.equals("") && pass.equals("")) {
-            JOptionPane.showMessageDialog(null, "User ID Password cannot be blank.");
+            JOptionPane.showMessageDialog(null, rb.getString("Login.Alert.BlankUserID"));
         }
         if (enter == true) {
             Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/CustomerSelection.fxml"));
@@ -61,7 +82,7 @@ public class LoginController implements Initializable {
             addPartsStage.show();
         }
         if (enter == false) {
-            JOptionPane.showMessageDialog(null, "Login Failed");
+            JOptionPane.showMessageDialog(null, rb.getString("Login.Alert.FailedLogin"));
             txtuname.setText("");
             txtpass.setText("");
         }
@@ -86,12 +107,8 @@ public class LoginController implements Initializable {
             alert.close();
         }
     }
+    ZoneId zone = ZoneId.systemDefault();
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Initialized");
-
-    }
 
 
 
