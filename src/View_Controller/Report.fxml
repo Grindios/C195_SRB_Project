@@ -2,15 +2,23 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.Report">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="443.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.ReportController">
     <children>
-        <TextArea layoutX="14.0" layoutY="23.0" prefHeight="200.0" prefWidth="569.0" />
-        <Label layoutX="22.0" layoutY="239.0" text="Select Report: " />
-        <RadioButton layoutX="18.0" layoutY="273.0" mnemonicParsing="false" text="Appointment Types" />
-        <RadioButton layoutX="18.0" layoutY="303.0" mnemonicParsing="false" text="Cunsoltant Schedule" />
-        <RadioButton layoutX="18.0" layoutY="334.0" mnemonicParsing="false" text="Customer List" />
-        <Button layoutX="400.0" layoutY="360.0" mnemonicParsing="false" text="Exit" />
+        <Button fx:id="contactAptBtn" layoutX="348.0" layoutY="23.0" mnemonicParsing="false" onAction="#contactApointmentsAct" text="Contact Appointment" />
+        <TextArea fx:id="mainTxtArea" layoutX="27.0" layoutY="92.0" prefHeight="332.0" prefWidth="800.0" />
+        <Button fx:id="backButton" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#BackAct" text="&lt;Back">
+            <font>
+                <Font size="14.0" />
+            </font></Button>
+      <AnchorPane layoutX="100.0" layoutY="13.0" prefHeight="72.0" prefWidth="236.0" style="-fx-border-color: Black; -fx-border-radius: 15;">
+         <children>
+            <Button fx:id="customerAptBtn" layoutX="13.0" layoutY="10.0" mnemonicParsing="false" onAction="#CustomerAptAct" prefHeight="26.0" prefWidth="202.0" text="Customer Appointments" />
+            <RadioButton fx:id="byTypeRdbtn" layoutX="13.0" layoutY="40.0" mnemonicParsing="false" onAction="#typeSelectionAct" text="By Type" />
+            <RadioButton fx:id="byMonthRdbtn" layoutX="104.0" layoutY="40.0" mnemonicParsing="false" onAction="#monthSelectionAct" text="By Month" />
+         </children>
+      </AnchorPane>
+      <Button fx:id="aptlocationBtn" layoutX="539.0" layoutY="23.0" mnemonicParsing="false" onAction="#aptLocationAct" text="Appointment Locations" />
     </children>
 </AnchorPane>

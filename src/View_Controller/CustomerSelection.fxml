@@ -19,5 +19,6 @@
       <Button fx:id="appointmentsBtn" layoutX="221.0" layoutY="234.0" mnemonicParsing="false" onAction="#AppointmentsAct" prefHeight="26.0" prefWidth="113.0" text="Appointments" />
       <Button fx:id="signOutBtn" layoutX="436.0" layoutY="273.0" mnemonicParsing="false" onAction="#SignOutAct" text="Sign out" />
       <Button fx:id="exitBtn" layoutX="455.0" layoutY="234.0" mnemonicParsing="false" onAction="#ExitCustomerAct" text="Exit" />
+      <Button fx:id="reportBtn" layoutX="221.0" layoutY="273.0" mnemonicParsing="false" onAction="#ReportAct" prefHeight="26.0" prefWidth="113.0" text="Report" />
     </children>
 </AnchorPane>

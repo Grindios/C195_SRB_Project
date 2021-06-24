@@ -9,20 +9,14 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.scene.control.TextField;
+
 import javax.swing.*;
-import java.awt.*;
-import java.awt.Button;
 import java.io.IOException;
 import java.net.URL;
 import java.time.ZoneId;
-import java.util.Locale;
 import java.util.ResourceBundle;
-import javafx.scene.control.Label;
 
 public class LoginController implements Initializable {
 
@@ -50,6 +44,9 @@ public class LoginController implements Initializable {
     @FXML
     private Label ZONEIDLBL;
     ResourceBundle rb = ResourceBundle.getBundle("LocaleFiles/Nat", LocaleInfo.getLocale());
+
+    /**This is the initialize method.
+     it loads the all the pertinent information to the page.*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         System.out.println("Initialized");
@@ -61,6 +58,8 @@ public class LoginController implements Initializable {
         ZONEIDLBL.setText(rb.getString("Login.zoneID"));
 
     }
+    /**This is the the Sign in method.
+     When the sign in button is clicked, the text field information is cross referenced to validate the user to enter the scheduling app.*/
     @FXML
     public void SigninAct(ActionEvent actionEvent) throws IOException, Exception {
 
@@ -70,11 +69,12 @@ public class LoginController implements Initializable {
         selectedUserIndex = DBUser.getUserID(uname);
 
 
-
         if (uname.equals("") && pass.equals("")) {
             JOptionPane.showMessageDialog(null, rb.getString("Login.Alert.BlankUserID"));
         }
         if (enter == true) {
+            Database.Log.loginAttempts(uname,enter);
+
             Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/CustomerSelection.fxml"));
             Scene addPartsScene = new Scene(addPartsParent);
             Stage addPartsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
@@ -82,6 +82,7 @@ public class LoginController implements Initializable {
             addPartsStage.show();
         }
         if (enter == false) {
+            Database.Log.loginAttempts(uname,enter);
             JOptionPane.showMessageDialog(null, rb.getString("Login.Alert.FailedLogin"));
             txtuname.setText("");
             txtpass.setText("");
@@ -91,7 +92,8 @@ public class LoginController implements Initializable {
     }
 
 
-
+    /**This is the Exit method.
+     When the Exit button is clicked, the application closes.*/
     @FXML
     public void ExitAct(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);

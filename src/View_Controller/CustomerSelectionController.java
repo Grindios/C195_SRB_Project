@@ -1,5 +1,6 @@
 package View_Controller;
 
+import DBAccess.DBAppointment;
 import DBAccess.DBCustomers;
 import Database.DBConnection;
 import LocaleFiles.LocaleInfo;
@@ -53,11 +54,15 @@ private Button appointmentsBtn;
 private Button exitBtn;
 @FXML
 private Button signOutBtn;
+@FXML
+private Button reportBtn;
 
 
-
+Boolean alert = DBAppointment.upcomingAppointment();
 private static int selectedCustomerIndex = 0;
     ResourceBundle rb = ResourceBundle.getBundle("LocaleFiles/Nat", LocaleInfo.getLocale());
+    /**This is the initialize method.
+     it loads the all the pertinent information to the page.*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         // set column values
@@ -80,9 +85,25 @@ private static int selectedCustomerIndex = 0;
         appointmentsBtn.setText(rb.getString("SelectCustomer.appointmentsBtn"));
         exitBtn.setText(rb.getString("SelectCustomer.exitBtn"));
         signOutBtn.setText(rb.getString("SelectCustomer.signOutBtn"));
+        reportBtn.setText(rb.getString("SelectCustomer.ReportBtn"));
 
+        //check for appointments
+        if (alert) {
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle(rb.getString("SelectCustomer.Alert.Title"));
+            alert.setHeaderText(rb.getString("SelectCustomer.Alert.UpcomingApts"));
+            alert.setContentText(rb.getString("SelectCustomer.Alert.AptID") + DBAppointment.appointmentIndex + rb.getString("SelectCustomer.Alert.StartTime") + DBAppointment.stringDateTimePublic);
+            alert.showAndWait();
+            System.out.println(alert);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, rb.getString("SelectCustomer.Alert.NoUpcomingApts"));
+            System.out.println(alert);
+        }
     }
-
+    /**This is the new customer method.
+     When the new customer button is clicked it navigates to the new customer page*/
     public void NewCustomerAct(ActionEvent actionEvent) throws IOException {
 
         Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/AddCustomer.fxml"));
@@ -94,7 +115,8 @@ private static int selectedCustomerIndex = 0;
         //clear customer table
         CustomerTable.setItems(null);
     }
-
+    /**This is the Exit customer action.
+     When the Exit button is clicked it closes the form.*/
     public void ExitCustomerAct(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(rb.getString("SelectCustomer.Alert.exit.title"));
@@ -109,7 +131,8 @@ private static int selectedCustomerIndex = 0;
             alert.close();
         }
     }
-
+    /**This is the Sign out button.
+     When the sign out button is clicked it navigates to the login page*/
     public void SignOutAct(ActionEvent actionEvent) {
         Parent addPartsParent = null;
 
@@ -138,7 +161,8 @@ private static int selectedCustomerIndex = 0;
 
 
 
-
+    /**This is the Appointments method.
+     When the appointments button is clicked it navigates to the appointments page*/
     public void AppointmentsAct(ActionEvent actionEvent) throws IOException {
         Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/AppointmentCalendar.fxml"));
         Scene addPartsScene = new Scene(addPartsParent);
@@ -146,7 +170,8 @@ private static int selectedCustomerIndex = 0;
         addPartsStage.setScene(addPartsScene);
         addPartsStage.show();
     }
-
+    /**This is the delete method.
+     When the delete button is clicked the selected customer is deleted as long as there isn't an appointment assigned to the customer.*/
     public void deleteAct(ActionEvent actionEvent) {
 
         Customer customer = CustomerTable.getSelectionModel().getSelectedItem();
@@ -165,7 +190,8 @@ private static int selectedCustomerIndex = 0;
         }
         updateCustomerTbl();
     }
-
+    /**This is the modify customer method.
+     When the modify customer button is clicked, the selected customer is modified.*/
     public void ModifyCustomerAct(ActionEvent actionEvent) throws IOException {
 
         Customer selectedCustomer = CustomerTable.getSelectionModel().getSelectedItem();
@@ -191,15 +217,24 @@ private static int selectedCustomerIndex = 0;
 
         }
 
-
+    /**This is the selected customer index method.
+     This method helps with the selection of customers to modify the selected user.*/
     public static int getSelectedCustomerIndex() {
         return selectedCustomerIndex;
     }
+    /**This is the update customer method.
+     This method updates the customer table with the pertinent information.*/
     @FXML
     public void updateCustomerTbl() {CustomerTable.setItems(DBCustomers.getCustomers());}
 
-
-
-
-
+    /**This is the report method.
+     When the user clicks on the report button it navigates to the reports page.*/
+    public void ReportAct(ActionEvent actionEvent) throws IOException {
+        Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/Report.fxml"));
+        Scene addPartsScene = new Scene(addPartsParent);
+        Stage addPartsStage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        addPartsStage.setTitle(rb.getString("SelectCustomer.ReportNav"));
+        addPartsStage.setScene(addPartsScene);
+        addPartsStage.show();
+    }
 }

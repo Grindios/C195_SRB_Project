@@ -3,6 +3,7 @@ package View_Controller;
 import DBAccess.DBCountries;
 import DBAccess.DBCustomers;
 import DBAccess.DBFirstLvlDivision;
+import Interfaces.DateTimeInterface;
 import LocaleFiles.LocaleInfo;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -90,18 +91,13 @@ public class ModifyCustomerController implements Initializable {
 
     }
 
-
     String selectedCustomerID = Integer.toString(CustomerSelectionController.getSelectedCustomerIndex());
-
-
 
     public void FilterFrstLvlDivAct(MouseEvent mouseEvent) {
         String selectedCountry;
         selectedCountry = countryCmb.getValue();
         divisionCmb.setItems(DBFirstLvlDivision.filterFirstLvlDiv(selectedCountry));
     }
-
-
 
     public void GoBackAct(ActionEvent actionEvent) throws IOException {
         Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/CustomerSelection.fxml"));

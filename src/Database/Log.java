@@ -1,20 +1,38 @@
 package Database;
 
 
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Log {
-    private static final String FILENAME = "log.txt";
 
-    public static void log (String username, boolean success) {
-        try(FileWriter fw = new FileWriter(FILENAME, true); BufferedWriter bw = new BufferedWriter(fw); PrintWriter pw = new PrintWriter(bw)) {
-            pw.println(ZonedDateTime.now() + " " + username + (success ? " Success" : "Failure"));
-        } catch (IOException e) {
-            System.out.println("Log Error: " + e.getMessage());
+
+
+    public static final String filename = "Login_Activity.txt";
+    public Log(){};
+
+
+
+    public static void loginAttempts(String uname, Boolean enter) throws IOException {
+        LocalDate date = LocalDate.now();
+        LocalDateTime  dateTime = LocalDateTime.now();
+
+        try {
+            FileWriter fw = new FileWriter(filename, true);
+            PrintWriter pw = new PrintWriter(fw);
+            pw.println("There was a  SUCCESSFUL log in attempt on " + date + " with the user name \" " + uname + " \" at " + dateTime.getHour() + ":" + dateTime.getMinute()+ "");
+            pw.close();
         }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+
     }
+
+
 }

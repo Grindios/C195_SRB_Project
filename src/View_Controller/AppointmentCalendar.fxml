@@ -26,5 +26,6 @@
       <Button fx:id="allAppointmentBtn" layoutX="212.0" layoutY="381.0" mnemonicParsing="false" onAction="#AllAppointmentsAct" prefHeight="26.0" prefWidth="173.0" text="All Appointments" />
       <Button fx:id="weeklyAptBtn" layoutX="210.0" layoutY="418.0" mnemonicParsing="false" onAction="#WeeklyAppointmentsAct" prefHeight="26.0" prefWidth="173.0" text="Weekly Appointments" />
       <Button fx:id="monthlyAptBtn" layoutX="210.0" layoutY="462.0" mnemonicParsing="false" onAction="#monthlyAppointmentAct" prefHeight="26.0" prefWidth="173.0" text="Monthly Appointments" />
+      <Button fx:id="backBtn" layoutX="977.0" layoutY="431.0" mnemonicParsing="false" onAction="#BackAct" text="&lt;Back" />
     </children>
 </AnchorPane>

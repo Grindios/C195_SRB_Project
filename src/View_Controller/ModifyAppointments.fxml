@@ -7,16 +7,16 @@
     <children>
         <Button fx:id="saveBtn" layoutX="127.0" layoutY="331.0" mnemonicParsing="false" onAction="#SaveAct" text="Save" />
         <Button fx:id="exitBtn" layoutX="386.0" layoutY="331.0" mnemonicParsing="false" onAction="#ExitAct" text="Exit" />
-        <Label layoutX="49.0" layoutY="128.0" text="Title: " />
-        <Label layoutX="291.0" layoutY="165.0" text="End Time:" />
-        <Label layoutX="286.0" layoutY="128.0" prefHeight="16.0" prefWidth="76.0" text="End Date:" />
-        <Label layoutX="17.0" layoutY="93.0" text="Customer:" />
-        <Label layoutX="10.0" layoutY="255.0" text="Description:" />
-        <Label layoutX="19.0" layoutY="157.0" text="Location: " />
-        <Label layoutX="286.0" layoutY="55.0" text="Start Date: " />
-        <Label layoutX="21.0" layoutY="192.0" text="Contact: " />
-        <Label layoutX="287.0" layoutY="93.0" text="Start Time:" />
-        <Label layoutX="36.0" layoutY="226.0" text="Type: " />
+        <Label fx:id="titleLbl" layoutX="49.0" layoutY="128.0" text="Title: " />
+        <Label fx:id="endTimeLbl" layoutX="291.0" layoutY="165.0" text="End Time:" />
+        <Label fx:id="endDateLbl" layoutX="286.0" layoutY="128.0" prefHeight="16.0" prefWidth="76.0" text="End Date:" />
+        <Label fx:id="customerLbl" layoutX="17.0" layoutY="93.0" text="Customer:" />
+        <Label fx:id="descriptionLbl" layoutX="10.0" layoutY="255.0" text="Description:" />
+        <Label fx:id="locationLbl" layoutX="19.0" layoutY="157.0" text="Location: " />
+        <Label fx:id="startDateLbl" layoutX="286.0" layoutY="55.0" text="Start Date: " />
+        <Label fx:id="contactLbl" layoutX="21.0" layoutY="192.0" text="Contact: " />
+        <Label fx:id="startTimeLbl" layoutX="287.0" layoutY="93.0" text="Start Time:" />
+        <Label fx:id="typeLbl" layoutX="36.0" layoutY="226.0" text="Type: " />
         <TextField fx:id="titleTxt" layoutX="94.0" layoutY="123.0" prefHeight="26.0" prefWidth="179.0" />
         <TextField fx:id="locationTxt" layoutX="94.0" layoutY="152.0" prefHeight="26.0" prefWidth="179.0" />
         <TextField fx:id="typeTxt" layoutX="96.0" layoutY="221.0" prefHeight="26.0" prefWidth="179.0" />
@@ -31,6 +31,7 @@
         <ComboBox fx:id="endMinuteCmb" layoutX="457.0" layoutY="160.0" prefHeight="26.0" prefWidth="68.0" promptText="00" />
         <ComboBox fx:id="customerCmb" layoutX="94.0" layoutY="88.0" prefHeight="26.0" prefWidth="179.0" promptText="--Select Customer--" />
         <TextField fx:id="descriptionTxt" layoutX="96.0" layoutY="250.0" prefHeight="26.0" prefWidth="179.0" />
-      <Button fx:id="backBtn" mnemonicParsing="false" onAction="#BackAct" text="&lt; Back" />
+        <Button fx:id="backBtn" mnemonicParsing="false" onAction="#BackAct" text="&lt;Back" />
+      <Label fx:id="aptIDLbl" layoutX="291.0" layoutY="205.0" text="Appointment ID" />
     </children>
 </AnchorPane>

@@ -52,6 +52,8 @@ public class AddCustomerController implements Initializable {
     private Label phoneLbl;
 
     ResourceBundle rb = ResourceBundle.getBundle("LocaleFiles/Nat", LocaleInfo.getLocale());
+    /**This is the initialize method.
+     It loads all the labels with the language depending on system settings.*/
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Populating country ComboBox
@@ -71,13 +73,15 @@ public class AddCustomerController implements Initializable {
 
 
     }
-
+    /**This is the First level division method.
+     It loads the first level division combo box with information depending on what country the user chooses.*/
     public void FilterFrstLvlDivAct(MouseEvent mouseEvent) {
         String selectedCountry;
         selectedCountry = countryCmb.getValue();
         divisionCmb.setItems(DBFirstLvlDivision.filterFirstLvlDiv(selectedCountry));
     }
-
+    /**This is the back method.
+     When the user clicks the back button it takes the user back to the previous page.*/
     public void GoBackAct(ActionEvent actionEvent) throws IOException {
         Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/CustomerSelection.fxml"));
         Scene addPartsScene = new Scene(addPartsParent);
@@ -85,7 +89,8 @@ public class AddCustomerController implements Initializable {
         addPartsStage.setScene(addPartsScene);
         addPartsStage.show();
     }
-
+    /**This is the save method.
+     When the user clicks the save, the content of all the fields are sent to the method that handles saving to the database.*/
     public void SaveAct(ActionEvent actionEvent) throws IOException {
         String name = customerNameTxt.getText();
         String address = addressTxt.getText();
@@ -121,11 +126,8 @@ public class AddCustomerController implements Initializable {
 
     }
 
-
-
-
-
-
+    /**This is the Exit method.
+     When the user clicks the exit button it closes the form.*/
     public void ExitBtn(ActionEvent actionEvent) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle(rb.getString("ModifyCustomer.Alert.Exit.Title"));
