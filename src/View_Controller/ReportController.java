@@ -139,7 +139,7 @@ public class ReportController implements Initializable {
 
         for (i = 0; i < oblist.size(); i++) {
             sbf.append("_______________________________________________________________________");
-            sbf.append("\n"+oblist.get(i) + " " +rb.getString("Report.ContactAppointments.1" + "\n"));
+            sbf.append("\n"+oblist.get(i) + " " /*+ rb.getString("Report.ContactAppointments.1" + "\n")*/ );
 
             try {
                 Connection con = DBConnection.getConnection();

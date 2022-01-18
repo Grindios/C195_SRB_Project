@@ -19,7 +19,7 @@
         <TextField fx:id="phoneTxt" layoutX="193.0" layoutY="187.0" />
         <ComboBox fx:id="divisionCmb" layoutX="422.0" layoutY="107.0" onMouseEntered="#FilterFrstLvlDivAct" prefWidth="150.0" />
       <Button fx:id="backBtn" mnemonicParsing="false" onAction="#GoBackAct" text="&lt; Back" />
-      <ComboBox fx:id="countryCmb" layoutX="192.0" layoutY="107.0" prefWidth="150.0" />
+      <ComboBox fx:id="countryCmb" layoutX="192.0" layoutY="107.0" onAction="#CountryCmdAct" prefWidth="150.0" />
       <Label fx:id="customerIDLbl" layoutX="400.0" layoutY="18.0" text="Customer ID: " />
       <Label fx:id="CUSTOMERIDLBL" layoutX="497.0" layoutY="18.0" />
     </children>

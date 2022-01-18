@@ -25,7 +25,7 @@ public class DBFirstLvlDivision {
                 oblist.clear();
                 Connection con = DBConnection.getConnection();
 
-                ResultSet rs = con.createStatement().executeQuery("SELECT * FROM first_level_divisions where Country_ID = 38;");
+                ResultSet rs = con.createStatement().executeQuery("SELECT * FROM first_level_divisions where Country_ID = 3;");
 
                 while (rs.next()){
                     oblist.add(rs.getString("Division"));
@@ -33,7 +33,7 @@ public class DBFirstLvlDivision {
                 return oblist;
 
             }
-            if (country.contains("United Kingdom")) {
+            if (country.contains("UK")) {
                 oblist.clear();
                 Connection con = DBConnection.getConnection();
 
@@ -44,7 +44,7 @@ public class DBFirstLvlDivision {
                 }
                 return oblist;
             }
-            if (country.contains("United States")) {
+            if (country.contains("U.S")) {
                 oblist.clear();
                 Connection con = DBConnection.getConnection();
 

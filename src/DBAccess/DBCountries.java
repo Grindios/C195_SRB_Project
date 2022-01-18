@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 public class DBCountries {
     private static ObservableList<String> oblist = FXCollections.observableArrayList();
     public static ObservableList<String> getAllCountries() {
+        oblist.clear();
         try {
             Connection con = DBConnection.getConnection();
 

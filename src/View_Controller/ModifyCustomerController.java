@@ -99,6 +99,10 @@ public class ModifyCustomerController implements Initializable {
         divisionCmb.setItems(DBFirstLvlDivision.filterFirstLvlDiv(selectedCountry));
     }
 
+    public void CountryCmdAct(MouseEvent actionEvent) {
+        countryCmb.setItems(DBCountries.getAllCountries());
+    }
+
     public void GoBackAct(ActionEvent actionEvent) throws IOException {
         Parent addPartsParent = FXMLLoader.load(getClass().getResource("/View_Controller/CustomerSelection.fxml"));
         Scene addPartsScene = new Scene(addPartsParent);
@@ -159,4 +163,6 @@ public class ModifyCustomerController implements Initializable {
             alert.close();
         }
     }
+
+
 }
