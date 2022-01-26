@@ -31,7 +31,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class CustomerSelectionController implements Initializable {
-
+@FXML
+private Button customerSearchBtn;
+@FXML
+private TextField customerSearchTxt;
 @FXML
 private TableView<Customer> CustomerTable;
 @FXML
@@ -56,6 +59,7 @@ private Button exitBtn;
 private Button signOutBtn;
 @FXML
 private Button reportBtn;
+
 
 
 Boolean alert = DBAppointment.upcomingAppointment();
@@ -236,5 +240,14 @@ private static int selectedCustomerIndex = 0;
         addPartsStage.setTitle(rb.getString("SelectCustomer.ReportNav"));
         addPartsStage.setScene(addPartsScene);
         addPartsStage.show();
+    }
+
+
+    public void CustomerSearchAct(ActionEvent actionEvent) {
+        System.out.println("1");
+        String customerSearch = customerSearchTxt.getText().trim();
+        System.out.println(customerSearch);
+        //DBCustomers.searchCustomer(customerSearch);
+        CustomerTable.setItems(DBCustomers.searchCustomer(customerSearch));
     }
 }

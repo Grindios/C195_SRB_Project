@@ -5,20 +5,22 @@
 
 <AnchorPane prefHeight="414.0" prefWidth="636.0" style="-fx-background-color: lightgray;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View_Controller.CustomerSelectionController">
     <children>
-        <Button fx:id="modifyBtn" layoutX="20.0" layoutY="234.0" mnemonicParsing="false" onAction="#ModifyCustomerAct" prefHeight="26.0" prefWidth="146.0" text="Modify Customer" />
-      <TableView fx:id="CustomerTable" layoutX="20.0" layoutY="28.0" prefHeight="200.0" prefWidth="573.0">
+        <Button fx:id="modifyBtn" layoutX="20.0" layoutY="273.0" mnemonicParsing="false" onAction="#ModifyCustomerAct" prefHeight="26.0" prefWidth="146.0" text="Modify Customer" />
+      <TableView fx:id="CustomerTable" layoutX="20.0" layoutY="72.0" prefHeight="166.0" prefWidth="570.0">
         <columns>
             <TableColumn fx:id="idCol" prefWidth="64.0" text="ID" />
           <TableColumn fx:id="custCol" prefWidth="159.0" text="Customer" />
-          <TableColumn fx:id="addyCol" prefWidth="204.0" text="Address" />
             <TableColumn fx:id="phoneCol" prefWidth="144.0" text="Phone Number" />
+          <TableColumn fx:id="addyCol" prefWidth="204.0" text="Address" />
         </columns>
       </TableView>
-      <Button fx:id="deleteBtn" layoutX="20.0" layoutY="314.0" mnemonicParsing="false" onAction="#deleteAct" prefHeight="26.0" prefWidth="146.0" text="Delete Customer" />
-      <Button fx:id="newCustomerBtn" layoutX="20.0" layoutY="273.0" mnemonicParsing="false" onAction="#NewCustomerAct" prefHeight="26.0" prefWidth="146.0" text="New Customer" />
-      <Button fx:id="appointmentsBtn" layoutX="221.0" layoutY="234.0" mnemonicParsing="false" onAction="#AppointmentsAct" prefHeight="26.0" prefWidth="113.0" text="Appointments" />
-      <Button fx:id="signOutBtn" layoutX="436.0" layoutY="273.0" mnemonicParsing="false" onAction="#SignOutAct" text="Sign out" />
-      <Button fx:id="exitBtn" layoutX="455.0" layoutY="234.0" mnemonicParsing="false" onAction="#ExitCustomerAct" text="Exit" />
-      <Button fx:id="reportBtn" layoutX="221.0" layoutY="273.0" mnemonicParsing="false" onAction="#ReportAct" prefHeight="26.0" prefWidth="113.0" text="Report" />
+      <Button fx:id="deleteBtn" layoutX="20.0" layoutY="360.0" mnemonicParsing="false" onAction="#deleteAct" prefHeight="26.0" prefWidth="146.0" text="Delete Customer" />
+      <Button fx:id="newCustomerBtn" layoutX="20.0" layoutY="319.0" mnemonicParsing="false" onAction="#NewCustomerAct" prefHeight="26.0" prefWidth="146.0" text="New Customer" />
+      <Button fx:id="appointmentsBtn" layoutX="221.0" layoutY="273.0" mnemonicParsing="false" onAction="#AppointmentsAct" prefHeight="26.0" prefWidth="113.0" text="Appointments" />
+      <Button fx:id="signOutBtn" layoutX="221.0" layoutY="361.0" mnemonicParsing="false" onAction="#SignOutAct" text="Sign out" />
+      <Button fx:id="exitBtn" layoutX="301.0" layoutY="361.0" mnemonicParsing="false" onAction="#ExitCustomerAct" text="Exit" />
+      <Button fx:id="reportBtn" layoutX="221.0" layoutY="319.0" mnemonicParsing="false" onAction="#ReportAct" prefHeight="26.0" prefWidth="113.0" text="Report" />
+      <Button fx:id="customerSearchBtn" layoutX="189.0" layoutY="37.0" mnemonicParsing="false" onAction="#CustomerSearchAct" text="Search" />
+      <TextField fx:id="customerSearchTxt" layoutX="26.0" layoutY="37.0" />
     </children>
 </AnchorPane>

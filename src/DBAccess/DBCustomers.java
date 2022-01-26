@@ -145,10 +145,36 @@ public class DBCustomers {
         return apt_idString;
     }
 
+    // search for customer
+    public static ObservableList<Customer> searchCustomer(String search) {
+        oblist.clear();
+        String modSearch = "%" + search + "%";
+        System.out.println("Reached Func");
+        try {
+            System.out.println("Reached search");
+            Connection con = DBConnection.getConnection();
+            PreparedStatement pst;
+            pst = con.prepareStatement(
+                    "SELECT * FROM customers WHERE Customer_Name like ?;");
+            pst.setString(1, modSearch);
+            ResultSet rs = pst.executeQuery();
 
+            while (rs.next()) {
+                oblist.add(new Customer(rs.getString("Customer_Name"),
+                        rs.getString("Address"),
+                        rs.getString("Phone"),
+                        rs.getInt("Customer_ID"),
+                        rs.getInt("Division_ID"),
+                        rs.getString("Postal_Code"),
+                        rs.getString("Phone")));
+            }
 
-
-
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+            System.out.println("Not Right");
+        }
+    return oblist;
+    }
 
     // search for load customer data
 
